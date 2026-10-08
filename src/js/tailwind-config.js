@@ -1,101 +1,55 @@
 tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "error": "#ba1a1a",
-            "surface-container-low": "#f4f3f0",
-            "on-tertiary-fixed": "#001a41",
-            "inverse-primary": "#b2c6f7",
-            "inverse-on-surface": "#f2f1ee",
-            "primary": "#00102d",
-            "surface-variant": "#e3e2df",
-            "on-background": "#1a1c1a",
-            "surface-dim": "#dbdad7",
-            "on-secondary-container": "#592600",
-            "on-secondary-fixed": "#321200",
-            "outline": "#75777f",
-            "on-surface-variant": "#44474e",
-            "surface-container-high": "#e9e8e5",
-            "tertiary-fixed": "#d8e2ff",
-            "tertiary": "#00102d",
-            "inverse-surface": "#2f312f",
-            "background": "#faf9f6",
-            "on-primary-container": "#798dba",
-            "on-secondary-fixed-variant": "#753400",
-            "surface-container-lowest": "#ffffff",
-            "primary-fixed-dim": "#b2c6f7",
-            "error-container": "#ffdad6",
-            "surface-container-highest": "#e3e2df",
-            "surface-container": "#efeeeb",
-            "secondary-fixed": "#ffdbc8",
-            "on-surface": "#1a1c1a",
-            "on-tertiary-container": "#408aff",
-            "on-primary": "#ffffff",
-            "surface": "#faf9f6",
-            "on-secondary": "#ffffff",
-            "tertiary-container": "#002454",
-            "surface-tint": "#4a5e88",
-            "primary-container": "#0d254c",
-            "outline-variant": "#c5c6cf",
-            "on-error-container": "#93000a",
-            "on-primary-fixed-variant": "#32466f",
-            "secondary-container": "#fb7800",
-            "on-tertiary": "#ffffff",
-            "surface-bright": "#faf9f6",
-            "secondary-fixed-dim": "#ffb68b",
-            "on-primary-fixed": "#001a41",
-            "primary-fixed": "#d8e2ff",
-            "secondary": "#994700",
-            "tertiary-fixed-dim": "#adc7ff",
-            "on-tertiary-fixed-variant": "#004493",
-            "on-error": "#ffffff"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "space-xs": "0.25rem",
-            "gutter": "1rem",
-            "space-xl": "2rem",
-            "space-lg": "1.5rem",
-            "space-sm": "0.5rem",
-            "space-md": "1rem",
-            "margin": "1rem",
-            "margin-tablet": "2rem",
-            "gutter-desktop": "2rem",
-            "gutter-tablet": "1.5rem",
-            "margin-desktop": "3rem"
-          },
-          "fontFamily": {
-            "label-lg": ["Plus Jakarta Sans"],
-            "body-md": ["Inter"],
-            "display-lg": ["Plus Jakarta Sans"],
-            "body-lg": ["Inter"],
-            "body-sm": ["Inter"],
-            "headline-md": ["Plus Jakarta Sans"],
-            "headline-sm": ["Plus Jakarta Sans"],
-            "label-md": ["Plus Jakarta Sans"],
-            "label-sm": ["Plus Jakarta Sans"],
-            "display-lg-mobile": ["Plus Jakarta Sans"],
-            "headline-lg": ["Plus Jakarta Sans"]
-          },
-          "fontSize": {
-            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
-            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
-            "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
-            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
-            "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
-            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
-            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }],
-            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }],
-            "display-lg-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
-            "headline-lg": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
-          }
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#4C33EB",
+          "primary-container": "#4C33EB",
+          "on-primary": "#ffffff",
+          "secondary": "#4C33EB",
+          "secondary-container": "#4C33EB",
+          "on-secondary": "#ffffff",
+          "secondary-fixed": "#EAE6FF",
+          "on-secondary-fixed": "#241873",
+          "secondary-fixed-dim": "#D6CEFF",
+          "background": "#faf9f6",
+          "surface": "#faf9f6",
+          "surface-container-lowest": "#ffffff",
+          "surface-container-low": "#f4f3f0",
+          "surface-container": "#efeeeb",
+          "surface-container-high": "#e9e8e5",
+          "surface-container-highest": "#e3e2df",
+          "surface-variant": "#e3e2df",
+          "on-surface": "#1a1c1a",
+          "on-surface-variant": "#44474e",
+          "outline": "#75777f",
+          "outline-variant": "#c5c6cf",
+          "tertiary": "#4C33EB",
+          "tertiary-container": "#4C33EB",
+          "on-primary-container": "#D6CEFF"
+        },
+        borderRadius: {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "2xl": "1rem",
+          "3xl": "1.5rem",
+          "full": "9999px"
+        },
+        fontFamily: {
+          sans: ["Plus Jakarta Sans", "Inter", "sans-serif"],
+          "body": ["Inter", "sans-serif"],
+          "headline": ["Plus Jakarta Sans", "sans-serif"]
         }
       }
     }
+  }
+
+  tailwind.config.theme.extend.colors.blue = {
+    50: "#F3F1FF", 100: "#EAE6FF", 200: "#D6CEFF", 300: "#B7A9FF", 400: "#8A75FF",
+    500: "#4C33EB", 600: "#4C33EB", 700: "#3D28C4", 800: "#30209B", 900: "#241873"
+  };
+  tailwind.config.theme.extend.colors.orange = {
+    50: "#F3F1FF", 100: "#EAE6FF", 200: "#D6CEFF", 300: "#B7A9FF", 400: "#8A75FF",
+    500: "#4C33EB", 600: "#4C33EB", 700: "#3D28C4", 800: "#30209B", 900: "#241873"
+  };

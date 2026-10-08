@@ -1,0 +1,425 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Porter PackMovers - Logistics &amp; Intra-city Transport</title>
+<!-- Material Symbols Outlined Font -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Plus Jakarta Sans & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="src/js/tailwind-config.js"></script>
+<link href="src/css/styles.css" rel="stylesheet">
+</head>
+<body class="bg-surface font-sans text-on-surface antialiased min-h-screen flex flex-col justify-between items-center selection:bg-orange-100 selection:text-orange-900">
+<!-- Mobile Device Simulation Wrapper -->
+<div class="w-full max-w-md bg-background min-h-screen flex flex-col relative pb-28 shadow-xl">
+<!-- 1. HEADER & LOCATION BAR -->
+<header class="bg-surface-container-lowest sticky top-0 z-40 w-full border-b border-surface-container-high shadow-sm px-4 py-3">
+<div class="flex items-center justify-between"><!-- Brand mark & Locality pill -->
+<div class="flex items-center space-x-2.5">
+<!-- Porter Brand Icon Badge -->
+<div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-white shadow-sm shrink-0">
+<span class="material-symbols-outlined text-xl text-blue-500 font-bold" data-icon="local_shipping" data-weight="fill">local_shipping</span>
+</div>
+<!-- Location Picker Dropdown Pill -->
+<button class="flex flex-col text-left group">
+<div class="flex items-center space-x-1">
+<span class="text-xs font-extrabold text-primary tracking-tight">Chittoor, AP</span>
+<span class="material-symbols-outlined text-sm text-blue-600 group-hover:translate-y-0.5 transition-transform" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</div>
+<div class="flex items-center space-x-1">
+<span class="material-symbols-outlined text-[13px] text-blue-500" data-icon="location_on" data-weight="fill">location_on</span>
+<span class="text-[11px] text-on-surface-variant font-medium truncate max-w-[130px]">Bazaar Main, 517001</span>
+</div>
+</button>
+</div>
+<!-- Right Controls: Porter Wallet chip, Notification Bell, User Avatar -->
+<div class="flex items-center space-x-2 shrink-0">
+<!-- Porter Wallet Chip -->
+<button class="flex items-center space-x-1 bg-primary text-white px-2.5 py-1.5 rounded-full hover:bg-slate-800 transition-colors shadow-sm active:scale-95">
+<span class="material-symbols-outlined text-sm text-blue-400" data-icon="account_balance_wallet" data-weight="fill">account_balance_wallet</span>
+<span class="text-[12px] font-bold tracking-tight">₹240</span>
+</button>
+<!-- Notification Bell -->
+<button aria-label="Notifications" class="relative p-1.5 rounded-full text-primary hover:bg-surface-container active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2.5 h-2.5 bg-blue-600 rounded-full ring-2 ring-surface-container-lowest"></span>
+</button>
+<!-- User Avatar -->
+<div class="w-8 h-8 rounded-full ring-2 ring-blue-500/20 overflow-hidden shadow-sm shrink-0">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY9rCR61ZRHs_eMMtOQN4lD-A1lOddLPbMJDLEVVE6NV68pnpu9sz0uOa-gQm2RHIhyFWfzL_xH12oyb-9MTWgsipV6R9YkCWtvpPJQ3jR3KjypdoHdEkLXiKJp_Ds1Nt8DnGCcnAeExmb-ztaHMu_ioMSBP7_YuQhWROwyxYgj6S9lwQo_xsZwq9CRwreF3epkkCVAtoW1AAly9-O2q9G0Jg8qfhhl1zKL25XgvGr">
+</div>
+</div></div>
+</header>
+<!-- MAIN CONTENT CONTAINER -->
+<main class="px-4 pt-3 space-y-4">
+<!-- 2. SEARCH & FILTER BAR -->
+<section class="bg-surface-container-lowest border border-surface-container-high rounded-2xl p-3 shadow-navy-card"><div class="flex items-center space-x-2.5 bg-surface-container-low rounded-xl px-3 py-2.5 border border-transparent hover:border-blue-500/30 transition-all cursor-pointer">
+<div class="w-6 h-6 rounded-lg bg-blue-50 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-blue-600 text-lg" data-icon="search">search</span>
+</div>
+<div class="flex-1">
+<span class="text-xs font-semibold text-primary block leading-none">Where to deliver in Chittoor?</span>
+<span class="text-[10px] text-on-surface-variant font-normal">House shifting, cargo, parcels &amp; parcels</span>
+</div>
+<!-- Mode toggles -->
+<div class="flex items-center space-x-1 shrink-0">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full">Intra</span>
+<span class="bg-surface-container text-primary text-[10px] font-bold px-2 py-0.5 rounded-full border border-surface-variant">Intercity</span>
+</div>
+</div>
+<!-- Recent Locality Chips -->
+<div class="flex items-center gap-1.5 mt-2.5 overflow-x-auto no-scrollbar pt-0.5">
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider shrink-0 flex items-center gap-0.5 pr-0.5">
+<span class="material-symbols-outlined text-xs text-blue-600" data-icon="history">history</span> Recent:
+</span>
+<button class="bg-surface-container-low hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 text-primary text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap border border-surface-container-high transition-colors">
+  Kattamanchi
+</button>
+<button class="bg-surface-container-low hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 text-primary text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap border border-surface-container-high transition-colors">
+  Murakambattu Ind.
+</button>
+<button class="bg-surface-container-low hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 text-primary text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap border border-surface-container-high transition-colors">
+  Greamspet
+</button>
+</div></section>
+<!-- 3. PROMO HERO BANNER (PackMovers Navy #4C33EB & Orange #4C33EB) -->
+<section class="bg-primary text-white rounded-2xl p-4 relative overflow-hidden shadow-navy-elevated border border-blue-500/30">
+<div class="relative z-10 max-w-[74%]">
+<!-- Tag Pill -->
+<div class="inline-flex items-center space-x-1.5 bg-white/10 backdrop-blur-sm border border-blue-400/30 text-blue-300 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wide mb-2">
+<span class="material-symbols-outlined text-xs text-blue-400" data-icon="electric_bolt" data-weight="fill">electric_bolt</span>
+<span class="">15-Min Doorstep Dispatch</span>
+</div>
+<h2 class="text-[17px] font-extrabold leading-snug text-white tracking-tight">
+  Mini Trucks &amp; Courier starting at ₹49
+</h2>
+<p class="text-xs text-slate-300 mt-1 leading-relaxed">
+  Regional Chittoor fleet discounts up to 20% off today on intra-city moves.
+</p>
+<!-- Vibrant Blue CTA Button -->
+<a href="vehicle-selection.html" class="mt-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-4 py-2 rounded-xl shadow-md inline-flex items-center space-x-1.5 active:scale-95 transition-all">
+<span class="">Book Vehicle Now</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<!-- Decorative Logistics Graphic Overlay -->
+<div class="absolute -right-3 -bottom-3 text-white/10 pointer-events-none select-none">
+<span class="material-symbols-outlined text-9xl leading-none" data-icon="local_shipping">local_shipping</span>
+</div>
+<!-- Ambient Glow -->
+<div class="absolute right-2 top-2 w-24 h-24 rounded-full bg-blue-500/20 blur-2xl pointer-events-none"></div>
+</section>
+<!-- 4. ACTIVE BOOKING STATUS CARD (Live Tracking Tata Ace) -->
+<section class="bg-surface-container-lowest border border-blue-500/30 rounded-2xl p-4 shadow-navy-elevated relative overflow-hidden">
+<!-- Active Accent Stripe -->
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 via-sky-500 to-primary"></div>
+<!-- Header status -->
+<div class="flex items-center justify-between pb-2.5 border-b border-surface-container">
+<div class="flex items-center space-x-2">
+<span class="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse-beacon"></span>
+<span class="text-xs font-extrabold text-primary uppercase tracking-wide">Live Booking</span>
+<span class="text-[11px] font-mono font-bold bg-slate-100 text-primary px-2 py-0.5 rounded border border-slate-200">#PTR-8492</span>
+</div>
+<!-- ETA Countdown Pill -->
+<span class="text-[11px] font-extrabold text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-blue-600" data-icon="schedule">schedule</span>
+  ETA: 12 Mins
+</span>
+</div>
+<!-- Vehicle & Driver Card -->
+<div class="py-3 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<!-- Vehicle badge -->
+<div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-2xl" data-icon="local_shipping" data-weight="fill">local_shipping</span>
+</div>
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="text-sm font-extrabold text-primary">Tata Ace (Chota Hathi)</span>
+<span class="text-[10px] font-mono bg-slate-100 px-1.5 py-0.5 rounded text-slate-700 font-semibold border border-slate-200">AP 03 TX 4821</span>
+</div>
+<div class="flex items-center space-x-1.5 text-xs text-on-surface-variant mt-0.5">
+<span class="font-bold text-primary">Ramesh K.</span>
+<span class="">•</span>
+<span class="inline-flex items-center text-amber-600 font-extrabold">
+<span class="material-symbols-outlined text-xs mr-0.5 text-amber-500" data-icon="star" data-weight="fill">star</span> 4.9
+</span>
+<span class="">•</span>
+<span class="text-emerald-700 font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs text-emerald-600" data-icon="verified" data-weight="fill">verified</span> Verified
+</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Route Path -->
+<div class="bg-surface-container-low rounded-xl p-3 border border-surface-container-high">
+<div class="flex items-center justify-between text-xs">
+<div class="flex items-center space-x-2 truncate">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0 ring-2 ring-emerald-200"></span>
+<span class="font-bold text-primary truncate">Chittoor Bazaar</span>
+</div>
+<span class="material-symbols-outlined text-blue-500 text-base px-2 shrink-0" data-icon="arrow_forward">arrow_forward</span>
+<div class="flex items-center space-x-2 truncate">
+<span class="w-2.5 h-2.5 rounded-full bg-blue-600 shrink-0 ring-2 ring-blue-200"></span>
+<span class="font-bold text-primary truncate">Tirupati Rd / NH 69</span>
+</div>
+</div>
+<!-- Segmented Delivery Progress Bar -->
+<div class="mt-3">
+<div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-blue-600 to-sky-400 h-full rounded-full w-3/4"></div>
+</div>
+<div class="flex justify-between text-[10px] text-on-surface-variant mt-1.5 font-semibold">
+<span class="text-primary font-bold">Assigned</span>
+<span class="text-primary font-bold">At Pickup</span>
+<span class="text-blue-600 font-extrabold">On the Way</span>
+<span class="text-slate-400">Delivered</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons: Call Driver & Track Live Map -->
+<div class="mt-3 pt-1 flex items-center gap-2">
+<a aria-label="Call Ramesh K." class="p-2.5 rounded-xl border border-primary/20 text-primary hover:bg-slate-100 active:scale-95 transition-all flex items-center justify-center gap-1.5 text-xs font-bold px-3" href="tel:919876543210">
+<span class="material-symbols-outlined text-base text-primary" data-icon="call" data-weight="fill">call</span>
+<span class="">Call Driver</span>
+</a>
+<button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-3 rounded-xl text-xs font-extrabold active:scale-95 transition-all shadow-sm flex items-center justify-center space-x-1.5">
+<span class="material-symbols-outlined text-base" data-icon="near_me">near_me</span>
+<span class="">Track Live Map</span>
+</button>
+</div>
+</section>
+<!-- 5. CORE LOGISTICS SERVICES GRID (Clean Rounded-2xl Cards) -->
+<section class="pt-1">
+<div class="flex items-center justify-between mb-3">
+<div>
+<h2 class="text-base font-extrabold text-primary font-headline">Core Logistics Services</h2>
+<p class="text-xs text-on-surface-variant font-medium">Mini trucks, fast couriers &amp; full home shifting</p>
+</div>
+<span class="text-[10px] font-extrabold text-blue-700 uppercase bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200">All AP &amp; Interstate</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- 1. Trucks & Mini Trucks (Hero Card across 2 columns) -->
+<a href="vehicle-selection.html" aria-label="Choose a truck and route" class="col-span-2 block bg-surface-container-lowest border border-surface-container-high hover:border-blue-500/50 rounded-2xl p-3.5 shadow-navy-card relative cursor-pointer active:scale-[0.99] transition-all group">
+<span class="absolute top-3 right-3 bg-blue-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+  Save 20%
+</span>
+<div class="flex items-center space-x-3.5">
+<div class="w-12 h-12 rounded-xl bg-primary text-blue-400 flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-2xl" data-icon="local_shipping" data-weight="fill">local_shipping</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center space-x-1">
+<span class="text-sm font-extrabold text-primary">Trucks &amp; Mini Trucks</span>
+</div>
+<span class="text-xs text-on-surface-variant block mt-0.5">Tata Ace, Ape, Pickup 8ft for bulk &amp; cargo</span>
+<div class="mt-1 flex items-center space-x-2">
+<span class="text-xs font-extrabold text-blue-600 font-mono">From ₹210</span>
+<span class="text-[11px] text-on-surface-variant font-medium">• Up to 2.5 Tons</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-xl group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all" data-icon="chevron_right">chevron_right</span>
+</div>
+</a>
+<!-- 2. 2-Wheelers / Courier -->
+<div class="bg-surface-container-lowest border border-surface-container-high hover:border-blue-500/40 rounded-2xl p-3.5 shadow-navy-card flex flex-col justify-between h-40 cursor-pointer active:scale-[0.98] transition-all relative group">
+<span class="absolute top-2.5 right-2.5 bg-emerald-100 text-emerald-800 text-[9px] font-extrabold px-2 py-0.5 rounded-full border border-emerald-200">
+  Instant 15m
+</span>
+<div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl" data-icon="two_wheeler" data-weight="fill">two_wheeler</span>
+</div>
+<div class="mt-3">
+<span class="text-xs font-extrabold text-primary block leading-tight">2 Wheelers &amp; Courier</span>
+<span class="text-[11px] text-on-surface-variant block mt-0.5 line-clamp-1">Parcels, medicine &amp; food boxes</span>
+<span class="text-xs font-extrabold text-blue-600 font-mono block mt-1">From ₹45</span>
+</div>
+</div>
+<!-- 3. Packers & Movers -->
+<div class="bg-surface-container-lowest border border-surface-container-high hover:border-blue-500/40 rounded-2xl p-3.5 shadow-navy-card flex flex-col justify-between h-40 cursor-pointer active:scale-[0.98] transition-all relative group">
+<span class="absolute top-2.5 right-2.5 bg-primary text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full">
+  Verified Crew
+</span>
+<div class="w-10 h-10 rounded-xl bg-blue-50 text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl" data-icon="inventory_2" data-weight="fill">inventory_2</span>
+</div>
+<div class="mt-3">
+<span class="text-xs font-extrabold text-primary block leading-tight">Packers &amp; Movers</span>
+<span class="text-[11px] text-on-surface-variant block mt-0.5 line-clamp-1">1-3 BHK shifting, packaging &amp; crates</span>
+<span class="text-xs font-extrabold text-blue-600 font-mono block mt-1">From ₹1,499</span>
+</div>
+</div>
+<!-- 4. All India Intercity -->
+<div class="bg-surface-container-lowest border border-surface-container-high hover:border-blue-500/40 rounded-2xl p-3.5 shadow-navy-card flex flex-col justify-between h-40 cursor-pointer active:scale-[0.98] transition-all group">
+<div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl" data-icon="flight_takeoff">flight_takeoff</span>
+</div>
+<div class="mt-3">
+<span class="text-xs font-extrabold text-primary block leading-tight">All India Intercity</span>
+<span class="text-[11px] text-on-surface-variant block mt-0.5 line-clamp-1">Chennai, Bangalore &amp; Hyd corridors</span>
+<span class="text-xs font-extrabold text-blue-600 font-mono block mt-1">From ₹80 / kg</span>
+</div>
+</div>
+<!-- 5. Enterprise Freight -->
+<div class="bg-surface-container-lowest border border-surface-container-high hover:border-blue-500/40 rounded-2xl p-3.5 shadow-navy-card flex flex-col justify-between h-40 cursor-pointer active:scale-[0.98] transition-all group">
+<div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-2xl" data-icon="warehouse">warehouse</span>
+</div>
+<div class="mt-3">
+<span class="text-xs font-extrabold text-primary block leading-tight">Enterprise Freight</span>
+<span class="text-[11px] text-on-surface-variant block mt-0.5 line-clamp-1">Granite, agro pulp &amp; bulk B2B</span>
+<span class="text-xs font-extrabold text-blue-600 font-mono block mt-1">Custom GST Rates</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. VEHICLE FLEET CAPACITY GUIDE (Horizontal Scrollable Cards) -->
+<section class="pt-1">
+<div class="flex items-center justify-between mb-2.5">
+<div>
+<h2 class="text-base font-extrabold text-primary font-headline">Vehicle Fleet Capacity Guide</h2>
+<p class="text-xs text-on-surface-variant font-medium">Standardized load limits and transparent rates</p>
+</div>
+<button class="text-xs font-extrabold text-blue-600 hover:underline">Rate Card</button>
+</div>
+<!-- Scrollable Fleet Cards -->
+<div class="flex space-x-3 overflow-x-auto no-scrollbar pb-1">
+<!-- 1. 3-Wheeler / Ape (500 KG) -->
+<div class="min-w-[155px] bg-surface-container-lowest border border-surface-container-high rounded-2xl p-3 shadow-navy-card flex flex-col justify-between shrink-0">
+<div>
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="electric_rickshaw">electric_rickshaw</span>
+<span class="text-[10px] font-bold bg-slate-100 text-primary px-2 py-0.5 rounded-full border border-slate-200">500 KG</span>
+</div>
+<span class="text-xs font-extrabold text-primary mt-2 block">3-Wheeler / Ape</span>
+<span class="text-[11px] text-on-surface-variant block mt-0.5 leading-tight">Cartons, electronics &amp; catering boxes</span>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center justify-between">
+<span class="text-xs font-extrabold text-primary font-mono">₹160</span>
+<span class="text-[10px] text-on-surface-variant font-medium">Base fare</span>
+</div>
+</div>
+<!-- 2. Tata Ace / Chota Hathi (Most Popular Featured) -->
+<div class="min-w-[170px] bg-surface-container-lowest border-2 border-blue-600 rounded-2xl p-3 shadow-navy-elevated flex flex-col justify-between relative shrink-0">
+<span class="absolute -top-2.5 left-3 bg-blue-600 text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+  Most Popular
+</span>
+<div>
+<div class="flex items-center justify-between pt-1">
+<span class="material-symbols-outlined text-blue-600 text-2xl" data-icon="local_shipping" data-weight="fill">local_shipping</span>
+<span class="text-[10px] font-bold bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full border border-blue-200">750 KG</span>
+</div>
+<span class="text-xs font-extrabold text-primary mt-2 block">Tata Ace</span>
+<span class="text-[11px] text-on-surface-variant block mt-0.5 leading-tight">Chota Hathi • 1 Room / Major appliances</span>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center justify-between">
+<span class="text-xs font-extrabold text-blue-600 font-mono">₹210</span>
+<span class="text-[10px] text-blue-600 font-bold">15 min pickup</span>
+</div>
+</div>
+<!-- 3. Pickup 8ft / Bolero (1200 KG) -->
+<div class="min-w-[165px] bg-surface-container-lowest border border-surface-container-high rounded-2xl p-3 shadow-navy-card flex flex-col justify-between shrink-0">
+<div>
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="front_loader">front_loader</span>
+<span class="text-[10px] font-bold bg-slate-100 text-primary px-2 py-0.5 rounded-full border border-slate-200">1200 KG</span>
+</div>
+<span class="text-xs font-extrabold text-primary mt-2 block">Pickup 8ft</span>
+<span class="text-[11px] text-on-surface-variant block mt-0.5 leading-tight">1-2 BHK loads, timber, granite &amp; tiles</span>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center justify-between">
+<span class="text-xs font-extrabold text-primary font-mono">₹380</span>
+<span class="text-[10px] text-on-surface-variant font-medium">Base fare</span>
+</div>
+</div>
+<!-- 4. Tata 407 (2500 KG) -->
+<div class="min-w-[165px] bg-surface-container-lowest border border-surface-container-high rounded-2xl p-3 shadow-navy-card flex flex-col justify-between shrink-0">
+<div>
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="rv_hookup">rv_hookup</span>
+<span class="text-[10px] font-bold bg-slate-100 text-primary px-2 py-0.5 rounded-full border border-slate-200">2500 KG</span>
+</div>
+<span class="text-xs font-extrabold text-primary mt-2 block">Tata 407</span>
+<span class="text-[11px] text-on-surface-variant block mt-0.5 leading-tight">Complete industrial &amp; commercial freight</span>
+</div>
+<div class="mt-3 pt-2 border-t border-surface-container flex items-center justify-between">
+<span class="text-xs font-extrabold text-primary font-mono">₹690</span>
+<span class="text-[10px] text-on-surface-variant font-medium">Base fare</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. TRUST & GUARANTEE BADGES -->
+<section class="bg-surface-container rounded-2xl p-3.5 border border-surface-container-high shadow-sm">
+<div class="text-center mb-2.5">
+<span class="text-[11px] font-extrabold uppercase tracking-wider text-primary font-headline">The Porter PackMovers Promise in Chittoor</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<!-- 1. 15-min dispatch -->
+<div class="bg-surface-container-lowest rounded-xl p-2.5 flex flex-col items-center text-center shadow-sm border border-surface-container-high">
+<div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 mb-1.5">
+<span class="material-symbols-outlined text-lg" data-icon="electric_bolt" data-weight="fill">electric_bolt</span>
+</div>
+<span class="text-[11px] font-bold text-primary leading-tight">15-Min Dispatch</span>
+<span class="text-[10px] text-on-surface-variant mt-0.5 leading-tight">Always nearby</span>
+</div>
+<!-- 2. Transparent GPS Rates -->
+<div class="bg-surface-container-lowest rounded-xl p-2.5 flex flex-col items-center text-center shadow-sm border border-surface-container-high">
+<div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 mb-1.5">
+<span class="material-symbols-outlined text-lg" data-icon="receipt_long" data-weight="fill">receipt_long</span>
+</div>
+<span class="text-[11px] font-bold text-primary leading-tight">Metered Rates</span>
+<span class="text-[10px] text-on-surface-variant mt-0.5 leading-tight">Zero hidden fees</span>
+</div>
+<!-- 3. 100% Insured -->
+<div class="bg-surface-container-lowest rounded-xl p-2.5 flex flex-col items-center text-center shadow-sm border border-surface-container-high">
+<div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 mb-1.5">
+<span class="material-symbols-outlined text-lg" data-icon="verified_user" data-weight="fill">verified_user</span>
+</div>
+<span class="text-[11px] font-bold text-primary leading-tight">100% Insured</span>
+<span class="text-[10px] text-on-surface-variant mt-0.5 leading-tight">Transit safety cover</span>
+</div>
+</div>
+</section>
+</main>
+<!-- 8. PERSISTENT BOTTOM NAVIGATION BAR (5-Tab Navigation) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest border-t border-surface-container-high shadow-lg">
+<div class="max-w-md mx-auto flex justify-around items-center px-2 py-2">
+<!-- 1. Home (Active: Brand Orange/Navy Accent) -->
+<button aria-label="Home" aria-current="page" class="flex flex-col items-center justify-center text-blue-600 font-extrabold px-3 py-1 active:scale-95 transition-transform group">
+<div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl text-blue-600" data-icon="home" data-weight="fill">home</span>
+</div>
+<span class="text-[11px] font-bold text-blue-600 mt-0.5 font-headline">Home</span>
+</button>
+<!-- 2. Orders -->
+<button aria-label="Orders" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1 active:scale-95 transition-transform group">
+<span class="material-symbols-outlined text-2xl text-slate-500 group-hover:text-primary transition-colors" data-icon="receipt">receipt</span>
+<span class="text-[11px] mt-1 font-semibold text-slate-600 font-headline">Orders</span>
+</button>
+<!-- 3. Wallet -->
+<button aria-label="Wallet" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1 active:scale-95 transition-transform group">
+<span class="material-symbols-outlined text-2xl text-slate-500 group-hover:text-primary transition-colors" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="text-[11px] mt-1 font-semibold text-slate-600 font-headline">Wallet</span>
+</button>
+<!-- 4. Support -->
+<button aria-label="Help &amp; Support" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1 active:scale-95 transition-transform group">
+<span class="material-symbols-outlined text-2xl text-slate-500 group-hover:text-primary transition-colors" data-icon="support_agent">support_agent</span>
+<span class="text-[11px] mt-1 font-semibold text-slate-600 font-headline">Support</span>
+</button>
+<!-- 5. Account -->
+<button aria-label="Account" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1 active:scale-95 transition-transform group">
+<span class="material-symbols-outlined text-2xl text-slate-500 group-hover:text-primary transition-colors" data-icon="person">person</span>
+<span class="text-[11px] mt-1 font-semibold text-slate-600 font-headline">Account</span>
+</button>
+</div>
+</nav>
+</div>
+
+
+</body></html>

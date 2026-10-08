@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PackMovers Chittoor - Fleet Selection</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="src/js/vehicle-selection-config.js"></script>
+<link href="src/css/vehicle-selection.css" rel="stylesheet">
+</head>
+<body class="bg-background text-on-surface antialiased flex justify-center selection:bg-primary-fixed">
+<div class="w-full max-w-[412px] min-h-screen bg-surface flex flex-col relative pb-40">
+<!-- Top App Bar (Task-Focused: Suppressed global shell to prioritize the canvas) -->
+<header class="sticky top-0 z-40 bg-surface-container-lowest/95 backdrop-blur-md px-4 py-3 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-3">
+<a href="home.html" aria-label="Back to home" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container text-primary transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+</a>
+<div>
+<h1 class="text-headline-sm font-headline-sm text-primary-container leading-tight">Select Vehicle &amp; Route</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Live Logistics · Chittoor Zone
+          </p>
+</div>
+</div>
+<button aria-label="Support &amp; Info" class="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</button>
+</header>
+<main class="flex-1 px-4 pt-3 space-y-4">
+<!-- Route & Location Bento Card -->
+<section class="bg-surface-container-lowest rounded-xl p-4 custom-shadow-card border border-surface-variant/70">
+<div class="flex items-start gap-3">
+<!-- Waypoint Timeline Pins -->
+<div class="flex flex-col items-center pt-1 self-stretch">
+<span class="w-3.5 h-3.5 rounded-full bg-emerald-500 ring-4 ring-emerald-100 flex-shrink-0"></span>
+<div class="w-0.5 flex-1 bg-gradient-to-b from-emerald-500 via-outline-variant to-secondary-container my-1 border-dashed"></div>
+<span class="material-symbols-outlined text-secondary-container text-[18px] flex-shrink-0" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<!-- Pickup & Drop Text Block -->
+<div class="flex-1 space-y-3">
+<div class="flex items-start justify-between">
+<div>
+<span class="text-label-sm font-label-sm text-outline tracking-wider block">PICKUP</span>
+<p class="text-body-md font-body-md font-semibold text-primary-container">Chittoor Bazaar Main Rd</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Chittoor, Andhra Pradesh (517001)</p>
+</div>
+<button class="text-label-sm font-label-sm text-on-tertiary-container hover:underline px-1 py-0.5">Edit</button>
+</div>
+<div class="h-[1px] bg-surface-container-high w-full"></div>
+<div class="flex items-start justify-between">
+<div>
+<span class="text-label-sm font-label-sm text-outline tracking-wider block">DROP OFF</span>
+<p class="text-body-md font-body-md font-semibold text-primary-container">Tirupati Rd / NH 69</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Kattamanchi Bypass Junction, 517002</p>
+</div>
+<button class="text-label-sm font-label-sm text-on-tertiary-container hover:underline px-1 py-0.5">Edit</button>
+</div>
+</div>
+</div>
+<!-- Add Stop & Route Meta Actions -->
+<div class="mt-3 pt-3 border-t border-surface-container-high flex items-center justify-between">
+<button class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-surface-container text-primary text-label-md font-label-md hover:bg-surface-variant transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+            Add Stop
+          </button>
+<div class="flex items-center gap-2 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-outline">route</span>
+<span>Est. 8.4 km · 22 mins</span>
+</div>
+</div>
+</section>
+<!-- Fleet Selection Section -->
+<section class="space-y-2.5">
+<div class="flex items-center justify-between px-1">
+<h2 class="text-headline-sm font-headline-sm text-primary-container">Recommended Fleet</h2>
+<span class="text-label-sm font-label-sm text-secondary-container bg-secondary-fixed/40 px-2 py-0.5 rounded-full font-bold">Fastest Arrival</span>
+</div>
+<div class="space-y-3" id="fleet-list">
+<!-- Tata Ace (Selected / Featured Card) -->
+<div class="relative bg-surface-container-lowest rounded-xl p-3.5 border-2 border-primary-container custom-shadow-elevated transition-all cursor-pointer">
+<div class="absolute -top-2.5 left-4 bg-primary-container text-surface-container-lowest text-label-sm font-label-sm px-2.5 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+              Most Popular
+            </div>
+<div class="flex items-start justify-between mt-1">
+<div class="flex gap-3">
+<div class="w-14 h-14 rounded-lg bg-surface-container flex items-center justify-center text-primary-container flex-shrink-0 border border-surface-container-high">
+<span class="material-symbols-outlined text-[32px]">local_shipping</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="text-headline-sm font-headline-sm text-primary">Tata Ace</h3>
+<span class="text-label-sm font-label-sm text-outline">(Chota Hathi)</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5 text-body-sm font-body-sm text-on-surface-variant">
+<span class="inline-flex items-center gap-0.5 text-emerald-700 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[13px]">bolt</span> 8 Mins away
+                    </span>
+<span>· 7ft × 4ft × 5ft</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="text-headline-md font-headline-md text-primary-container font-bold">₹210</p>
+<span class="text-label-sm font-label-sm text-outline line-through">₹252</span>
+</div>
+</div>
+<!-- Specs & Capacity Pill strip -->
+<div class="mt-3 pt-2.5 border-t border-surface-container-high flex items-center justify-between text-body-sm font-body-sm">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[17px] text-primary">weight</span>
+<span>Max 750 KG</span>
+<span class="text-outline-variant">|</span>
+<span class="material-symbols-outlined text-[17px] text-primary">bed</span>
+<span>1-2 Rooms / Appliances</span>
+</div>
+<span class="w-5 h-5 rounded-full bg-primary-container text-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]">done</span>
+</span>
+</div>
+</div>
+<!-- 3-Wheeler Piaggio Ape -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 border border-surface-variant custom-shadow-card hover:border-outline-variant transition-all cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex gap-3">
+<div class="w-14 h-14 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant flex-shrink-0 border border-surface-container-high">
+<span class="material-symbols-outlined text-[30px]">forklift</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="text-headline-sm font-headline-sm text-primary">3-Wheeler Ape</h3>
+<span class="text-label-sm font-label-sm text-outline">(Piaggio)</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5 text-body-sm font-body-sm text-on-surface-variant">
+<span class="inline-flex items-center gap-0.5 text-emerald-700 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[13px]">schedule</span> 5 Mins away
+                    </span>
+<span>· 5.5ft Deck</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="text-headline-md font-headline-md text-primary font-bold">₹140</p>
+<span class="text-label-sm font-label-sm text-outline">Base Fare</span>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-container-high flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[17px] text-outline">weight</span>
+<span>Max 500 KG</span>
+<span class="text-outline-variant">|</span>
+<span>Boxes, Mango Crates, Cartons</span>
+</div>
+<span class="w-5 h-5 rounded-full border border-outline-variant flex items-center justify-center"></span>
+</div>
+</div>
+<!-- Bolero Maxi / Pickup 8ft -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 border border-surface-variant custom-shadow-card hover:border-outline-variant transition-all cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex gap-3">
+<div class="w-14 h-14 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant flex-shrink-0 border border-surface-container-high">
+<span class="material-symbols-outlined text-[32px]">rv_hookup</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="text-headline-sm font-headline-sm text-primary">Pickup 8ft</h3>
+<span class="text-label-sm font-label-sm text-outline">(Bolero Maxi)</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5 text-body-sm font-body-sm text-on-surface-variant">
+<span class="text-on-surface-variant font-medium">14 Mins away</span>
+<span>· 8ft × 4.8ft</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="text-headline-md font-headline-md text-primary font-bold">₹380</p>
+<span class="text-label-sm font-label-sm text-outline">Base Fare</span>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-container-high flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[17px] text-outline">weight</span>
+<span>Max 1200 KG</span>
+<span class="text-outline-variant">|</span>
+<span>Granite, Heavy Machinery, 3+ BHK</span>
+</div>
+<span class="w-5 h-5 rounded-full border border-outline-variant flex items-center justify-center"></span>
+</div>
+</div>
+<!-- 2-Wheeler (Bike Courier) -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 border border-surface-variant custom-shadow-card hover:border-outline-variant transition-all cursor-pointer">
+<div class="flex items-start justify-between">
+<div class="flex gap-3">
+<div class="w-14 h-14 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant flex-shrink-0 border border-surface-container-high">
+<span class="material-symbols-outlined text-[30px]">two_wheeler</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="text-headline-sm font-headline-sm text-primary">2-Wheeler Bike</h3>
+</div>
+<div class="flex items-center gap-2 mt-0.5 text-body-sm font-body-sm text-on-surface-variant">
+<span class="inline-flex items-center gap-0.5 text-emerald-700 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[13px]">bolt</span> 3 Mins away
+                    </span>
+<span>· Urgent Docs &amp; Parcels</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="text-headline-md font-headline-md text-primary font-bold">₹45</p>
+<span class="text-label-sm font-label-sm text-outline">Base Fare</span>
+</div>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-container-high flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[17px] text-outline">weight</span>
+<span>Up to 20 KG</span>
+<span class="text-outline-variant">|</span>
+<span>Backpack / Small Bag</span>
+</div>
+<span class="w-5 h-5 rounded-full border border-outline-variant flex items-center justify-center"></span>
+</div>
+</div>
+</div>
+</section>
+<!-- Trip Add-ons & Goods Details -->
+<section class="space-y-3">
+<h2 class="text-headline-sm font-headline-sm text-primary-container px-1">Goods &amp; Booking Add-ons</h2>
+<!-- Goods Type Selector -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 border border-surface-variant custom-shadow-card space-y-2">
+<label class="text-label-md font-label-md text-primary font-semibold block">Category of Goods Being Moved</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 rounded-lg border-2 border-primary-container bg-primary-fixed/30 text-primary text-label-md font-label-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary-container">check_circle</span>
+              Household Goods
+            </button>
+<button class="px-3 py-1.5 rounded-lg border border-surface-variant bg-surface-container text-on-surface-variant text-label-md font-label-md hover:bg-surface-container-high">
+              Electronics
+            </button>
+<button class="px-3 py-1.5 rounded-lg border border-surface-variant bg-surface-container text-on-surface-variant text-label-md font-label-md hover:bg-surface-container-high">
+              Agro &amp; Mango Pulp
+            </button>
+<button class="px-3 py-1.5 rounded-lg border border-surface-variant bg-surface-container text-on-surface-variant text-label-md font-label-md hover:bg-surface-container-high">
+              Textiles / Granite
+            </button>
+</div>
+</div>
+<!-- Add Labour / Helper Toggle -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 border border-surface-variant custom-shadow-card flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary-fixed/40 text-secondary-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">person_add</span>
+</div>
+<div>
+<p class="text-label-lg font-label-lg text-primary leading-tight">Need Helper / Labour?</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Loading &amp; Unloading support (+₹150)</p>
+</div>
+</div>
+<!-- Tactile Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary-container"></div>
+</label>
+</div>
+<!-- Coupon / Promo Box -->
+<div class="bg-surface-container-lowest rounded-xl p-3 border border-emerald-200 custom-shadow-card flex items-center justify-between bg-emerald-50/30">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-emerald-600 text-[22px]">sell</span>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="text-label-md font-label-md font-bold text-emerald-800 tracking-wide">CHITTOOR20</span>
+<span class="text-[10px] bg-emerald-600 text-white px-1.5 py-0.2 rounded font-bold uppercase">Applied</span>
+</div>
+<p class="text-body-sm font-body-sm text-emerald-700">₹42 discount applied on base fare</p>
+</div>
+</div>
+<button class="text-label-sm font-label-sm font-semibold text-error hover:underline px-2">Remove</button>
+</div>
+<!-- Payment Mode Selector -->
+<div class="bg-surface-container-lowest rounded-xl p-3.5 border border-surface-variant custom-shadow-card">
+<div class="flex items-center justify-between mb-2">
+<span class="text-label-md font-label-md text-outline font-semibold uppercase tracking-wider">Payment Method</span>
+<button class="text-label-sm font-label-sm text-on-tertiary-container font-semibold hover:underline">Change</button>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<p class="text-body-md font-body-md font-semibold text-primary">Porter Wallet</p>
+<span class="text-label-sm font-label-sm font-bold text-emerald-700">Balance: ₹240</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Sufficient balance available for this ride</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Badges & Safety reassurance -->
+<div class="p-3 bg-surface-container rounded-xl flex items-center justify-around text-center text-on-surface-variant">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-primary">verified_user</span>
+<span class="text-label-sm font-label-sm">Goods Transit Cover</span>
+</div>
+<div class="h-6 w-[1px] bg-outline-variant"></div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-primary">support_agent</span>
+<span class="text-label-sm font-label-sm">24/7 Crew Support</span>
+</div>
+<div class="h-6 w-[1px] bg-outline-variant"></div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-[18px] text-primary">timer</span>
+<span class="text-label-sm font-label-sm">Free 45m Loading</span>
+</div>
+</div>
+</main>
+<!-- Sticky Bottom Booking Tray -->
+<div class="fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest custom-shadow-bottom border-t border-surface-variant/80">
+<div class="max-w-[412px] mx-auto px-4 py-3 space-y-2">
+<!-- Fare Breakdown Strip -->
+<div class="flex items-center justify-between">
+<div>
+<div class="flex items-baseline gap-1.5">
+<span class="text-display-lg-mobile font-display-lg-mobile text-primary font-bold">₹210</span>
+<span class="text-body-sm font-body-sm text-outline line-through">₹252</span>
+<span class="text-label-sm font-label-sm text-emerald-700 font-semibold">(Saved ₹42)</span>
+</div>
+<button class="text-label-sm font-label-sm text-on-tertiary-container hover:underline flex items-center gap-0.5">
+              View Fare Details
+              <span class="material-symbols-outlined text-[14px]">expand_less</span>
+</button>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-fixed/50 text-secondary-container text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[12px]">schedule</span> 8 min ETA
+            </span>
+</div>
+</div>
+<!-- Primary CTA Button (Royal Navy anchor with tactile feedback) -->
+<a href="live-tracking.html" class="w-full bg-primary-container text-surface-container-lowest font-headline-sm text-headline-sm py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform shadow-md hover:bg-tertiary"><span>Proceed to Book Tata Ace</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span></a>
+</div>
+</div>
+</div>
+</body></html>

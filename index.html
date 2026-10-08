@@ -1,330 +1,220 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
+<html class="h-full" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>PackMovers - Moving &amp; Logistics</title>
-<!-- Material Symbols Outlined Font -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Google Fonts: Plus Jakarta Sans & Inter -->
+<title>PackMovers - Your belongings. Our responsibility.</title>
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS v3 -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script src="src/js/tailwind-config.js"></script>
-<link href="src/css/styles.css" rel="stylesheet"/>
-</head>
-<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col justify-between items-center selection:bg-secondary-fixed selection:text-on-secondary-fixed">
-<!-- Mobile Device Simulation Wrapper (Fluid-first, max-w-md anchored) -->
-<div class="w-full max-w-md bg-background min-h-screen flex flex-col relative pb-28">
-<!-- TOP APP BAR (from Shared Components JSON specifications) -->
-<header class="bg-surface sticky top-0 z-40 w-full shadow-sm">
-<div class="flex justify-between items-center w-full px-4 py-3 max-w-md mx-auto">
-<div class="flex items-center space-x-2">
-<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
-<span class="material-symbols-outlined text-secondary-container" data-icon="local_shipping">local_shipping</span>
+<script src="src/js/splash-config.js"></script>
+<link href="src/css/splash.css" rel="stylesheet">
+<style>
+    body {
+      min-height: 100dvh;
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-full flex items-center justify-center p-0 sm:p-4">
+<!-- Mobile Canvas Shell (Max 420px for high-fidelity app simulation) -->
+<div class="relative w-full max-w-md min-h-screen bg-surface flex flex-col justify-between overflow-hidden shadow-2xl sm:rounded-3xl border border-surface-variant">
+<!-- Ambient Logistics Glow Circles -->
+<div class="absolute -top-24 -right-20 w-72 h-72 rounded-full bg-primary-fixed opacity-60 blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/3 -left-28 w-64 h-64 rounded-full bg-secondary-fixed opacity-40 blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-20 right-0 w-60 h-60 rounded-full bg-primary-fixed-dim opacity-30 blur-2xl pointer-events-none"></div>
+<!-- Top Status Bar & Quick Locale Selector -->
+<header class="relative z-10 px-5 pt-3 pb-2 flex items-center justify-between">
+<!-- Simulated Device Status Clock -->
+<div class="flex items-center space-x-1.5">
+<span class="font-label-md text-label-md text-primary font-bold tracking-tight">09:41</span>
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
 </div>
-<span class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight">PackMovers</span>
-</div>
-<div class="flex items-center space-x-2">
-<button aria-label="Notifications" class="relative p-2 rounded-full text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform duration-150">
-<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-<span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-secondary-container border-2 border-surface rounded-full"></span>
+<!-- Region & Language Pill -->
+<div class="flex items-center gap-2">
+<button aria-label="Toggle language" class="flex items-center space-x-1 px-2.5 py-1 rounded-full bg-surface-container-lowest border border-outline-variant shadow-sm active:scale-95 transition-transform duration-150" id="langToggle">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="translate">translate</span>
+<span class="font-label-sm text-label-sm text-primary font-bold" id="langLabel">EN / తె</span>
 </button>
-<div class="w-8 h-8 rounded-full border border-surface-variant overflow-hidden shadow-sm active:scale-95 transition-transform">
-<img class="w-full h-full object-cover" data-alt="A polished modern portrait headshot of Alex wearing a neutral slate navy shirt with soft warm studio rim lighting and clean minimalist background that fits a contemporary lifestyle app profile aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY9rCR61ZRHs_eMMtOQN4lD-A1lOddLPbMJDLEVVE6NV68pnpu9sz0uOa-gQm2RHIhyFWfzL_xH12oyb-9MTWgsipV6R9YkCWtvpPJQ3jR3KjypdoHdEkLXiKJp_Ds1Nt8DnGCcnAeExmb-ztaHMu_ioMSBP7_YuQhWROwyxYgj6S9lwQo_xsZwq9CRwreF3epkkCVAtoW1AAly9-O2q9G0Jg8qfhhl1zKL25XgvGr"/>
-</div>
+<!-- Battery & Signal Icons -->
+<div class="flex items-center space-x-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]" data-icon="signal_cellular_alt">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="wifi">wifi</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="battery_full">battery_full</span>
 </div>
 </div>
 </header>
-<!-- MAIN SCROLLABLE CONTENT CANVAS -->
-<main class="px-4 pt-3 space-y-4">
-<!-- 1. GREETING & LOCATION SELECTOR -->
-<section class="flex flex-col gap-1.5">
-<div class="flex items-center justify-between">
-<div>
-<h1 class="text-headline-md font-headline-md text-primary flex items-center gap-1.5">
-              Hello, Alex <span class="text-xl">👋</span>
-</h1>
-<p class="text-body-sm font-body-sm text-on-surface-variant">Ready for your next move?</p>
+<!-- Main Hero Brand Content -->
+<main class="splash-main relative z-10 flex-1 flex flex-col justify-center px-6 pt-2 pb-6">
+<!-- Logo Emblem & Hero Graphic -->
+<div class="splash-emblem relative mx-auto mb-6 flex flex-col items-center">
+<!-- Multi-layer Geometric Logistics Crest -->
+<div class="splash-emblem-frame relative w-28 h-28 flex items-center justify-center animate-float">
+<!-- Background Outer Shield -->
+<div class="absolute inset-0 rounded-2xl bg-primary-container shadow-lg transform rotate-3 opacity-90"></div>
+<div class="absolute inset-0 rounded-2xl bg-secondary-container opacity-20 transform -rotate-3 scale-105"></div>
+<!-- Core Icon Badge -->
+<div class="splash-emblem-core relative w-24 h-24 rounded-2xl bg-primary-container flex flex-col items-center justify-center border border-on-primary-fixed-variant shadow-inner p-3">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center shadow-md mb-1">
+<span class="material-symbols-outlined text-[28px] text-secondary-container" data-icon="local_shipping" data-weight="fill" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+<!-- Dynamic Mini Indicators -->
+<div class="flex items-center space-x-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container animate-ping"></span>
+<span class="font-label-sm text-[10px] tracking-wider text-surface uppercase font-bold">EXPRESS</span>
 </div>
 </div>
-<!-- Location Dropdown Bar -->
-<div class="mt-2 bg-surface-container-lowest border border-surface-variant rounded-xl p-2.5 flex items-center justify-between shadow-navy-card">
-<div class="flex items-center space-x-2.5 overflow-hidden">
-<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-primary-container shrink-0">
-<span class="material-symbols-outlined text-primary-container" data-icon="location_on" data-weight="fill">location_on</span>
-</div>
-<div class="flex flex-col truncate">
-<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Current Location</span>
-<span class="text-label-lg font-label-lg text-primary truncate">Austin, TX 78701</span>
+<!-- Badge Accessory (Verified Shield) -->
+<div class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-secondary-container text-on-primary flex items-center justify-center shadow-md border-2 border-surface">
+<span class="material-symbols-outlined text-[18px]" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
 </div>
 </div>
-<button aria-label="Change location" class="flex items-center text-on-surface-variant hover:text-primary transition-colors p-1">
-<span class="material-symbols-outlined" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
-</button>
+<!-- Subtle Dispatch Status Pill -->
+<div class="mt-4 inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-surface-container border border-surface-variant shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Fleet Active in Chittoor &amp; Interstate</span>
 </div>
-</section>
-<!-- 2. ACTIVE MOVE STATUS / REAL-TIME TRACKING BANNER (Level 2 Elevation) -->
-<section class="bg-surface-container-lowest border border-surface-variant rounded-xl p-4 shadow-navy-elevated relative overflow-hidden">
-<!-- Accent Top Bar -->
-<div class="absolute top-0 left-0 right-0 h-1 bg-secondary-container"></div>
-<!-- Header: Move ID & Live Beacon -->
-<div class="flex items-center justify-between pt-1 pb-3 border-b border-surface-container">
+</div>
+<!-- Brand Typography Cluster -->
+<div class="splash-brand text-center mb-6">
+<div class="flex items-center justify-center space-x-2">
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary font-bold tracking-tight">
+            PackMovers
+          </h1>
+<span aria-label="Moving truck" class="inline-flex items-center justify-center text-2xl" role="img">🚚</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-secondary-container font-semibold mt-1">
+          Your belongings. Our responsibility.
+        </p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mx-auto mt-2">
+          Precision packing, vetted local crews, and transparent real-time GPS relocation across South India.
+        </p>
+</div>
+<!-- Trust Metrics & Features Bento Card -->
+<div class="splash-trust bg-surface-container-lowest rounded-2xl p-4 border border-surface-variant shadow-sm space-y-3">
+<!-- Live Guarantee Badges -->
+<div class="grid grid-cols-3 gap-2 text-center">
+<div class="splash-metric p-2.5 rounded-xl bg-surface-container-low border border-surface-variant flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-secondary-container text-[22px] mb-1" data-icon="shield" data-weight="fill" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="font-label-md text-label-md text-primary font-bold">100%</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant leading-tight">Insured Cargo</span>
+</div>
+<div class="splash-metric p-2.5 rounded-xl bg-surface-container-low border border-surface-variant flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[22px] mb-1" data-icon="fmd_good" data-weight="fill" style="font-variation-settings: 'FILL' 1;">fmd_good</span>
+<span class="font-label-md text-label-md text-primary font-bold">Live GPS</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant leading-tight">Real-Time</span>
+</div>
+<div class="splash-metric p-2.5 rounded-xl bg-surface-container-low border border-surface-variant flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-secondary-container text-[22px] mb-1" data-icon="schedule" data-weight="fill" style="font-variation-settings: 'FILL' 1;">schedule</span>
+<span class="font-label-md text-label-md text-primary font-bold">15 Mins</span>
+<span class="font-label-sm text-[10px] text-on-surface-variant leading-tight">Fast Dispatch</span>
+</div>
+</div>
+<!-- Horizontal Highlight Pill Micro-Ticker -->
+<div class="flex items-center justify-between px-3 py-2 rounded-xl bg-surface border border-surface-variant">
 <div class="flex items-center space-x-2">
-<span class="text-label-lg font-label-lg text-primary">Live Move Status</span>
-<span class="text-label-md font-label-md text-on-surface-variant font-mono bg-surface-container px-2 py-0.5 rounded">#PM-8492</span>
+<span class="material-symbols-outlined text-[18px] text-secondary-container" data-icon="workspace_premium">workspace_premium</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Zero-Damage Handling Protocol</span>
 </div>
-<div class="flex items-center space-x-1.5 bg-secondary-fixed text-on-secondary-fixed px-2.5 py-1 rounded-full text-label-sm font-label-sm">
-<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse-beacon"></span>
-<span class="font-semibold">In Transit</span>
+<span class="font-label-sm text-[10px] px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-bold">VERIFIED</span>
 </div>
 </div>
-<!-- Transit Route Visualization -->
-<div class="py-3 flex items-center justify-between">
-<div class="flex flex-col">
-<span class="text-label-sm font-label-sm text-on-surface-variant">Origin</span>
-<span class="text-headline-sm font-headline-sm text-primary">Downtown Austin</span>
+<!-- Interactive Micro-Carousel Dots Indicator -->
+<div class="splash-carousel flex justify-center items-center space-x-1.5 mt-4">
+<span class="w-5 h-1.5 rounded-full bg-primary-container"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
 </div>
-<div class="flex items-center justify-center px-3 text-secondary-container">
-<span class="material-symbols-outlined" data-icon="trending_flat">trending_flat</span>
-</div>
-<div class="flex flex-col text-right">
-<span class="text-label-sm font-label-sm text-on-surface-variant">Destination</span>
-<span class="text-headline-sm font-headline-sm text-primary">Westlake Hills</span>
-</div>
-</div>
-<!-- ETA & Stepper Progress -->
-<div class="bg-surface-container-low rounded-lg p-3 my-1">
-<div class="flex items-center justify-between mb-2">
-<span class="text-body-sm font-body-sm text-primary font-medium flex items-center gap-1.5">
-<span class="material-symbols-outlined text-secondary-container text-base" data-icon="schedule">schedule</span>
-              En Route • Arriving in 25 mins
-            </span>
-<span class="text-label-sm font-label-sm text-secondary-container font-bold">Step 3 of 4</span>
-</div>
-<!-- Micro-step Bar (Packed -> Picked Up -> On the Way -> Delivered) -->
-<div class="grid grid-cols-4 gap-1.5 pt-1">
-<div class="h-1.5 rounded-full bg-secondary-container"></div>
-<div class="h-1.5 rounded-full bg-secondary-container"></div>
-<div class="h-1.5 rounded-full bg-secondary-container"></div>
-<div class="h-1.5 rounded-full bg-surface-variant"></div>
-</div>
-<div class="flex justify-between text-body-sm text-on-surface-variant mt-1.5 text-[10px]">
-<span class="text-primary font-medium">Packed</span>
-<span class="text-primary font-medium">Picked Up</span>
-<span class="text-secondary font-bold">On the Way</span>
-<span>Delivered</span>
-</div>
-</div>
-<!-- Crew Lead Details & Quick Action CTA Row -->
-<div class="mt-3.5 pt-3 border-t border-surface-container flex items-center justify-between gap-2">
-<div class="flex items-center space-x-2">
-<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-xs">
-              MT
-            </div>
-<div class="flex flex-col">
-<span class="text-label-md font-label-md text-primary leading-tight">Marcus T.</span>
-<span class="text-body-sm font-body-sm text-on-surface-variant text-[11px]">Crew Lead Pro</span>
-</div>
-</div>
-<div class="flex items-center space-x-2">
-<a aria-label="Call Marcus T." class="p-2.5 rounded-lg border border-primary-container text-primary hover:bg-surface-container active:scale-95 transition-all flex items-center justify-center" href="tel:5550192">
-<span class="material-symbols-outlined text-base" data-icon="call">call</span>
-</a>
-<button class="bg-secondary-container text-on-secondary px-3.5 py-2.5 rounded-lg text-label-md font-label-lg active:scale-95 transition-all shadow-sm flex items-center space-x-1">
-<span class="material-symbols-outlined text-base" data-icon="map">map</span>
-<span>Track Live Map</span>
-</button>
-</div>
-</div>
-</section>
-<!-- 3. INSTANT PRICE CALCULATOR BANNER (Promotional Navy Card) -->
-<section class="bg-primary-container text-on-primary rounded-xl p-5 relative overflow-hidden shadow-navy-elevated">
-<div class="relative z-10">
-<div class="flex items-center space-x-1.5 text-secondary-fixed mb-1">
-<span class="material-symbols-outlined text-sm" data-icon="bolt">bolt</span>
-<span class="text-label-sm font-label-sm tracking-wide uppercase font-semibold">Instant Quote Engine</span>
-</div>
-<h2 class="text-headline-sm font-headline-sm text-on-primary leading-snug max-w-[85%]">
-            Calculate moving cost in 60 seconds
-          </h2>
-<p class="text-body-sm font-body-sm text-on-primary-container mt-1">
-            Guaranteed flat rates, zero hidden fees.
-          </p>
-<div class="mt-3.5 flex items-center justify-between">
-<div class="flex items-center -space-x-1">
-<span class="text-label-sm font-label-sm bg-tertiary-container text-secondary-fixed px-2.5 py-1 rounded-full border border-outline/30">
-                Studio · 1-4 BHK · Long Distance
-              </span>
-</div>
-<button class="bg-secondary-container hover:bg-secondary text-on-secondary px-3.5 py-2 rounded-lg text-label-md font-label-lg active:scale-95 transition-all shadow-sm flex items-center space-x-1">
-<span>Get Instant Quote</span>
-<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- Subtle graphic accent background elements -->
-<div class="absolute -right-6 -bottom-6 w-28 h-28 bg-surface-tint/10 rounded-full blur-xl pointer-events-none"></div>
-<div class="absolute right-4 top-4 text-on-primary-container/20">
-<span class="material-symbols-outlined text-5xl" data-icon="calculate">calculate</span>
-</div>
-</section>
-<!-- 4. CORE SERVICES GRID (Clean 2-Column & Asymmetric Layout) -->
-<section class="pt-1">
-<div class="flex items-center justify-between mb-3">
-<h2 class="text-headline-sm font-headline-sm text-primary">Core Services</h2>
-<button class="text-label-md font-label-md text-secondary font-semibold hover:underline">View All</button>
-</div>
-<div class="grid grid-cols-2 gap-3">
-<!-- House Relocation (Featured Span) -->
-<div class="col-span-2 bg-surface-container-lowest border border-surface-variant rounded-xl p-3.5 flex items-center justify-between shadow-navy-card active:scale-[0.99] transition-transform cursor-pointer">
-<div class="flex items-center space-x-3">
-<div class="w-11 h-11 rounded-lg bg-surface-container-low flex items-center justify-center text-primary shrink-0">
-<span class="material-symbols-outlined text-2xl text-primary" data-icon="home">home</span>
-</div>
-<div>
-<span class="text-label-lg font-label-lg text-primary block">House Relocation</span>
-<span class="text-body-sm font-body-sm text-on-surface-variant">Entire home, apartment &amp; villa moving</span>
-</div>
-</div>
-<span class="material-symbols-outlined text-on-surface-variant text-lg" data-icon="chevron_right">chevron_right</span>
-</div>
-<!-- Office & Commercial -->
-<div class="bg-surface-container-lowest border border-surface-variant rounded-xl p-3.5 shadow-navy-card flex flex-col justify-between h-32 active:scale-[0.98] transition-transform cursor-pointer">
-<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-xl" data-icon="apartment">apartment</span>
-</div>
-<div>
-<span class="text-label-lg font-label-lg text-primary block">Office Relocation</span>
-<span class="text-body-sm font-body-sm text-on-surface-variant text-xs">Corporate &amp; workstations</span>
-</div>
-</div>
-<!-- Packing & Supplies -->
-<div class="bg-surface-container-lowest border border-surface-variant rounded-xl p-3.5 shadow-navy-card flex flex-col justify-between h-32 active:scale-[0.98] transition-transform cursor-pointer">
-<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-xl" data-icon="inventory_2">inventory_2</span>
-</div>
-<div>
-<span class="text-label-lg font-label-lg text-primary block">Packing &amp; Supplies</span>
-<span class="text-body-sm font-body-sm text-on-surface-variant text-xs">Crates, wraps &amp; teams</span>
-</div>
-</div>
-<!-- Secure Storage -->
-<div class="bg-surface-container-lowest border border-surface-variant rounded-xl p-3.5 shadow-navy-card flex flex-col justify-between h-32 active:scale-[0.98] transition-transform cursor-pointer">
-<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-xl" data-icon="lock_clock">lock_clock</span>
-</div>
-<div>
-<span class="text-label-lg font-label-lg text-primary block">Secure Storage</span>
-<span class="text-body-sm font-body-sm text-on-surface-variant text-xs">Climate controlled vaults</span>
-</div>
-</div>
-<!-- Single Heavy Item -->
-<div class="bg-surface-container-lowest border border-surface-variant rounded-xl p-3.5 shadow-navy-card flex flex-col justify-between h-32 active:scale-[0.98] transition-transform cursor-pointer">
-<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-xl" data-icon="fitness_center">fitness_center</span>
-</div>
-<div>
-<span class="text-label-lg font-label-lg text-primary block">Heavy Specialty</span>
-<span class="text-body-sm font-body-sm text-on-surface-variant text-xs">Pianos, safes, gym gear</span>
-</div>
-</div>
-</div>
-</section>
-<!-- 5. WHY CHOOSE PACKMOVERS (Trust Badges Row) -->
-<section class="bg-surface-container rounded-xl p-3 border border-surface-variant">
-<div class="flex items-center justify-around divide-x divide-surface-variant">
-<div class="flex flex-col items-center text-center px-2">
-<span class="material-symbols-outlined text-secondary-container text-xl" data-icon="verified_user">verified_user</span>
-<span class="text-label-sm font-label-sm text-primary mt-1">100% Insured</span>
-<span class="text-[10px] text-on-surface-variant">Zero loss risk</span>
-</div>
-<div class="flex flex-col items-center text-center px-2">
-<div class="flex items-center text-secondary-container">
-<span class="material-symbols-outlined text-xl" data-icon="stars">stars</span>
-</div>
-<span class="text-label-sm font-label-sm text-primary mt-1">4.9★ Pros</span>
-<span class="text-[10px] text-on-surface-variant">Vetted staff</span>
-</div>
-<div class="flex flex-col items-center text-center px-2">
-<span class="material-symbols-outlined text-secondary-container text-xl" data-icon="price_check">price_check</span>
-<span class="text-label-sm font-label-sm text-primary mt-1">Flat Pricing</span>
-<span class="text-[10px] text-on-surface-variant">Guaranteed quotes</span>
-</div>
-</div>
-</section>
-<!-- 6. SCHEDULED UPCOMING MOVES / RECENT ACTIVITY -->
-<section class="pt-1">
-<div class="flex items-center justify-between mb-2.5">
-<h2 class="text-headline-sm font-headline-sm text-primary">Upcoming Bookings</h2>
-<span class="text-label-sm font-label-sm text-on-surface-variant">1 scheduled</span>
-</div>
-<div class="bg-surface-container-lowest border border-surface-variant rounded-xl p-4 shadow-navy-card">
-<div class="flex items-start justify-between">
-<div class="flex items-start space-x-3">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex flex-col items-center justify-center shrink-0 border border-surface-variant">
-<span class="text-[10px] uppercase font-bold text-secondary">OCT</span>
-<span class="text-label-lg font-label-lg text-primary leading-none">24</span>
-</div>
-<div>
-<span class="text-label-lg font-label-lg text-primary block">Full Fragile Packing Service</span>
-<span class="text-body-sm font-body-sm text-on-surface-variant">Friday • 09:00 AM - 12:00 PM</span>
-</div>
-</div>
-<span class="text-label-sm font-label-sm bg-surface-container text-primary font-semibold px-2 py-0.5 rounded">
-              Confirmed
-            </span>
-</div>
-<div class="mt-3 pt-3 border-t border-surface-container flex items-center justify-between">
-<div class="flex items-center text-body-sm font-body-sm text-on-surface-variant text-xs space-x-1">
-<span class="material-symbols-outlined text-sm" data-icon="inventory">inventory</span>
-<span>3 movers · Boxes supplied</span>
-</div>
-<div class="flex items-center space-x-2">
-<button class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors py-1 px-2">
-                Reschedule
-              </button>
-<button class="text-label-md font-label-md text-primary font-bold hover:underline py-1 px-2">
-                Details
-              </button>
-</div>
-</div>
-</div>
-</section>
 </main>
-<!-- 7. BOTTOM NAVIGATION BAR (from Shared Components JSON specifications) -->
-<!-- Destination count: 5. Exact labels: Home (active), My Moves, Estimate, Support, Profile -->
-<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest shadow-lg">
-<div class="max-w-md mx-auto flex justify-around items-center px-2 py-2">
-<!-- 1. Home (Active: exact classes text-secondary-container font-semibold) -->
-<button aria-label="Home" class="flex flex-col items-center justify-center text-secondary-container font-semibold px-2 py-1 active:scale-95 transition-transform duration-150">
-<span class="material-symbols-outlined text-2xl" data-icon="home" data-weight="fill">home</span>
-<span class="text-label-sm font-label-sm mt-0.5">Home</span>
-</button>
-<!-- 2. My Moves -->
-<button aria-label="My Moves" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-2 py-1 active:scale-95 transition-transform duration-150">
-<span class="material-symbols-outlined text-2xl" data-icon="local_shipping">local_shipping</span>
-<span class="text-label-sm font-label-sm mt-0.5">My Moves</span>
-</button>
-<!-- 3. Estimate -->
-<button aria-label="Estimate" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-2 py-1 active:scale-95 transition-transform duration-150">
-<span class="material-symbols-outlined text-2xl" data-icon="calculate">calculate</span>
-<span class="text-label-sm font-label-sm mt-0.5">Estimate</span>
-</button>
-<!-- 4. Support -->
-<button aria-label="Support" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-2 py-1 active:scale-95 transition-transform duration-150">
-<span class="material-symbols-outlined text-2xl" data-icon="support_agent">support_agent</span>
-<span class="text-label-sm font-label-sm mt-0.5">Support</span>
-</button>
-<!-- 5. Profile -->
-<button aria-label="Profile" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-2 py-1 active:scale-95 transition-transform duration-150">
-<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
-<span class="text-label-sm font-label-sm mt-0.5">Profile</span>
+<!-- Bottom Action & Onboarding CTAs (Mobile Safe Pinned) -->
+<footer class="splash-footer relative z-10 px-6 pt-3 pb-6 bg-surface-container-lowest/90 backdrop-blur-md border-t border-surface-variant space-y-3">
+<!-- Primary Action: Book a Move -->
+<a href="home.html" class="w-full h-12 bg-primary-container hover:bg-primary active:scale-[0.98] transition-all duration-150 text-on-primary rounded-xl font-label-lg text-label-lg flex items-center justify-center space-x-2 shadow-md">
+<span>Book a Move</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<!-- Instant Quote / Explore Estimate -->
+<div class="grid grid-cols-2 gap-2">
+<a href="vehicle-selection.html" class="h-11 bg-surface-container hover:bg-surface-container-high active:scale-[0.98] transition-all rounded-xl font-label-md text-label-md text-primary border border-surface-variant flex items-center justify-center space-x-1.5">
+<span class="material-symbols-outlined text-[18px]" data-icon="calculate">calculate</span>
+<span>Instant Cost</span>
+</a>
+<button class="h-11 bg-surface-container hover:bg-surface-container-high active:scale-[0.98] transition-all rounded-xl font-label-md text-label-md text-primary border border-surface-variant flex items-center justify-center space-x-1.5" onclick="handleSignIn()">
+<span class="material-symbols-outlined text-[18px]" data-icon="login">login</span>
+<span>Sign In</span>
 </button>
 </div>
-</nav>
+<!-- Secondary Helper / Customer Care Helpline -->
+<div class="splash-help text-center pt-1">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Need immediate relocation assistance?
+          <a class="font-label-sm text-label-sm text-secondary-container hover:underline font-bold inline-flex items-center" href="tel:1800123456">
+            Call 24/7 Helpline
+          </a>
+</p>
 </div>
+<!-- App Build Version Footer Metadata -->
+<div class="splash-meta flex items-center justify-between text-on-surface-variant pt-2 border-t border-surface-variant">
+<div class="flex items-center space-x-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock">lock</span>
+<span class="font-label-sm text-[10px]">End-to-End Encrypted</span>
+</div>
+<span class="font-label-sm text-[10px] tracking-tight">PackMovers • Verified Fleet</span>
+</div>
+</footer>
+<!-- Interactive Toast Banner (Hidden by default, triggered on actions) -->
+<div class="fixed top-5 inset-x-4 max-w-sm mx-auto bg-primary-container text-on-primary px-4 py-3 rounded-xl shadow-xl flex items-center space-x-3 transform -translate-y-24 opacity-0 transition-all duration-300 z-50 pointer-events-none" id="toastNotification">
+<span class="material-symbols-outlined text-secondary-container" data-icon="verified">verified</span>
+<div class="flex-1">
+<p class="font-label-md text-label-md font-bold" id="toastTitle">PackMovers Dispatch</p>
+<p class="font-body-sm text-body-sm opacity-90" id="toastMessage">Connecting you with Chittoor fleet lead...</p>
+</div>
+</div>
+</div>
+<script>
+    // Lightweight micro-interaction script for the Splash / Welcome Screen
+    const langBtn = document.getElementById('langToggle');
+
+    if (langBtn) {
+      langBtn.addEventListener('click', () => {
+        showToast('Language option', 'Telugu language support is not available in this demo yet.');
+      });
+    }
+
+    function showToast(title, message) {
+      const toast = document.getElementById('toastNotification');
+      const titleElem = document.getElementById('toastTitle');
+      const msgElem = document.getElementById('toastMessage');
+
+      if (!toast) return;
+
+      titleElem.textContent = title;
+      msgElem.textContent = message;
+
+      toast.classList.remove('-translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('-translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2600);
+    }
+
+    function handlePrimaryAction() {
+      window.location.href = 'home.html';
+    }
+
+    function handleQuickEstimate() {
+      window.location.href = 'vehicle-selection.html';
+    }
+
+    function handleSignIn() {
+      showToast('Sign in', 'Account access is not available in this demo yet.');
+    }
+  </script>
 </body></html>
